@@ -1,1 +1,12 @@
 # Add Python dependencies here later
+fastapi
+uvicorn[standard]
+pydantic
+networkx
+
+dash
+dash-cytoscape
+pandas
+plotly
+
+# later: mininet comes from system packages, not pip, so we handle it separately
