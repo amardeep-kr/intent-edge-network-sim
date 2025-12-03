@@ -1,0 +1,162 @@
+What the parser understands
+
+(If you don’t follow this, it falls back to defaults.)
+
+1. Sites
+
+Use a number + the word “site(s)”
+Examples:
+
+“2 sites”
+
+“4 industrial sites”
+
+“3 factories”
+
+2. Sensors
+
+Two formats it truly understands:
+
+a) X sensors per site → preferred
+
+“15 sensors per site”
+
+“20 sensors per site”
+
+b) X sensors → fallback
+
+“30 sensors”
+
+3. Edges
+
+Two ways:
+
+“3 edge nodes”
+
+“3 edges”
+
+If you don’t specify, parser auto-sets edges = sites
+
+4. Link quality
+
+Should include one of:
+
+“weak inter-site link / WAN link”
+
+“normal inter-site link”
+
+“strong inter-site link”
+
+5. Protocol
+
+Should mention:
+
+mqtt
+
+coap
+
+tcp
+
+udp
+
+publish-subscribe
+
+6. Objective
+
+Use one of:
+
+reliability
+
+resilient / robustness
+
+low latency / fast response
+
+bandwidth / efficient
+
+7. Duration
+
+Use:
+
+“for X minutes”
+
+“for X seconds”
+
+“run 60s”
+
+“run 5 minutes”
+
+The Golden Template
+
+Use something like this structure:
+
+“Deploy X sites with Y sensors per site, use ______ protocol, assume ______ inter-site links, prioritize ______, and run for ______.”
+
+This hits all the fields the parser can extract.
+
+10 GOOD SAMPLE PROMPTS
+
+These all follow the rules and will trigger different outputs.
+
+1. Reliability-focused, weak links
+
+“Deploy 3 sites with 12 sensors per site, assume weak inter-site links, use MQTT publish–subscribe, and prioritize reliability for 5 minutes.”
+
+2. Latency-focused, strong links
+
+“Set up 2 industrial sites with 20 sensors per site, use TCP-style communication, assume strong inter-site WAN, and optimize for low latency during a 90-second run.”
+
+3. Heavy-load scenario
+
+“Create 4 sites with 30 sensors per site, use UDP-based transmission, keep links at normal quality, and run a 3-minute low-latency experiment.”
+
+4. Minimal deployment
+
+“Deploy 1 site with 10 sensors, assume normal links, use MQTT, and aim for balanced performance over 60 seconds.”
+
+5. High bandwidth emphasis
+
+“Build 2 smart-factory sites with 25 sensors per site, use CoAP, strong inter-site connectivity, and optimize for bandwidth-efficient operation for 4 minutes.”
+
+6. High resilience stress test
+
+“Configure 5 sites with 8 sensors per site, weak WAN connections, use MQTT, and maximize resilience for 2 minutes.”
+
+7. Dynamic multi-edge
+
+“Set up 3 sites with 18 sensors per site, define 3 edge nodes, use TCP, weak links, and focus on reliable data delivery for 120 seconds.”
+
+8. Massive sensor network
+
+“Deploy 2 locations with 50 sensors per site, strong links, UDP streaming, and optimize for low latency for a 1-minute experiment.”
+
+9. Mixed objective
+
+“Create 4 IoT sites hosting 10 sensors per site, normal WAN links, use MQTT, and balance latency and reliability for 5 minutes.”
+
+10. Bandwidth-pressure scenario
+
+“Deploy 3 sites with 40 sensors per site, weak connectivity, publish–subscribe messaging, and prioritize throughput for 3 minutes.”
+
+Summary: How to write prompts
+
+If you want the system to react differently, include:
+
+a number of sites
+
+sensors per site
+
+optional edge count
+
+link quality
+
+protocol
+
+objective
+
+duration
+
+If any of these are missing, parser uses defaults → looks same → frustration → panic → drama.
+
+Now you have a clear map of what the machine expects. You can craft “grown-up” network scenarios that will visually and numerically change the topology and metrics.
+
+If you want, I can generate 50 more prompts, or tailor them specifically for interview demo.

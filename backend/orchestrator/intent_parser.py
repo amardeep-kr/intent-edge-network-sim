@@ -247,12 +247,44 @@ def _parse_link_quality(text: str) -> str:
     return "normal"
 
 
+# def _parse_nodes(text: str) -> NodeConfig:
+#     text_l = text.lower()
+
+#     sensors = _extract_first_int_near_keyword(text_l, "sensor", default=10)
+#     edges = _extract_first_int_near_keyword(text_l, "edge", default=2)
+#     sites = _parse_sites(text_l, default=1)
+#     cloud = 1  # keep simple for now
+
+#     return NodeConfig(sensors=sensors, edges=edges, sites=sites, cloud=cloud)
+
+
 def _parse_nodes(text: str) -> NodeConfig:
     text_l = text.lower()
 
-    sensors = _extract_first_int_near_keyword(text_l, "sensor", default=10)
-    edges = _extract_first_int_near_keyword(text_l, "edge", default=2)
+    # 1) How many sites?
     sites = _parse_sites(text_l, default=1)
+
+    # 2) Sensors: try "X sensors per site" first
+    per_site = None
+    m = re.search(r"(\d+)\s+sensors?\s+per\s+site", text_l)
+    if m:
+        per_site = int(m.group(1))
+
+    if per_site is not None:
+        sensors = per_site * max(sites, 1)
+    else:
+        # fallback: any "X sensors" pattern
+        sensors = _extract_first_int_near_keyword(text_l, "sensor", default=10)
+
+    # 3) Edges: explicit number near "edge" if present
+    edges = _extract_first_int_near_keyword(text_l, "edge", default=0)
+
+    # if no explicit edges but we have sites, assume one edge per site
+    if edges == 0 and sites > 0:
+        edges = sites
+    if edges == 0:
+        edges = 2  # absolute last fallback
+
     cloud = 1  # keep simple for now
 
     return NodeConfig(sensors=sensors, edges=edges, sites=sites, cloud=cloud)
