@@ -5,7 +5,9 @@ pydantic
 networkx
 
 dash
-dash-cytoscape
+
+dash-cytoscape[extra]
+
 pandas
 plotly
 
