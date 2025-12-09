@@ -205,35 +205,45 @@ app.layout = html.Div(
         # ---------------------------------------------------
         # WORKFLOW PANEL (with run info)
         # ---------------------------------------------------
-        html.Div(
-            id="workflow-panel",
-            style={
-                "background": "#ffffff",
-                "borderRadius": "0.5rem",
-                "padding": "0.75rem",
-                "marginBottom": "1rem",
-                "boxShadow": "0 1px 3px rgba(0,0,0,0.08)",
-            },
-            children=[
-                html.Div(
-                    "Workflow Execution",
-                    style={"fontWeight": "600", "marginBottom": "0.25rem"},
-                ),
-                html.Div(
-                    id="workflow-run-info",
-                    style={
-                        "fontSize": "0.8rem",
-                        "color": "#4b5563",
-                        "marginBottom": "0.35rem",
-                    },
-                    children="Waiting for first run…",
-                ),
-                html.Ul(
-                    id="workflow-steps",
-                    style={"fontSize": "0.85rem", "color": "#1f2937"},
-                ),
-            ],
-        ),
+
+                            html.Div(
+                        id="workflow-panel",
+                        style={
+                            "background": "#ffffff",
+                            "borderRadius": "0.5rem",
+                            "padding": "0.75rem",
+                            "marginBottom": "1rem",
+                            "boxShadow": "0 1px 3px rgba(0,0,0,0.08)",
+
+                            # keep height stable
+                            "minHeight": "130px",          # tweak 120–150px if you want
+                            "display": "flex",
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                        },
+                        children=[
+                            html.Div(
+                                "Workflow Execution",
+                                style={"fontWeight": "600", "marginBottom": "0.25rem"},
+                            ),
+                            html.Div(
+                                id="workflow-run-info",
+                                style={
+                                    "fontSize": "0.8rem",
+                                    "color": "#4b5563",
+                                    "marginBottom": "0.35rem",
+                                },
+                                children="Waiting for first run…",
+                            ),
+                            html.Ul(
+                                id="workflow-steps",
+                                style={"fontSize": "0.85rem", "color": "#1f2937", "margin": 0},
+                            ),
+                        ],
+                    ),
+
+
+
 
         # ---------------------------------------------------
         # TOP ROW (Intent + Config)
@@ -296,7 +306,7 @@ app.layout = html.Div(
                     },
                     children=[
                         html.Div("Parsed Scenario Config", style={"fontWeight": "600"}),
-                        dcc.Loading(          # spinner for config
+                        dcc.Loading(
                             id="config-loading",
                             type="circle",
                             children=html.Pre(
@@ -309,9 +319,14 @@ app.layout = html.Div(
                                     "overflowY": "auto",
                                     "borderRadius": "0.4rem",
                                     "fontSize": "0.85rem",
+
+                                    # important bits:
+                                    "whiteSpace": "pre-wrap",   # allow wrapping
+                                    "wordBreak": "break-word",  # break long words/strings
                                 },
                             ),
                         ),
+
                         html.Button(
                             "Copy JSON",
                             id="copy-json-btn",
