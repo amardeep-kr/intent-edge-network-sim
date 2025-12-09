@@ -159,4 +159,3 @@ If any of these are missing, parser uses defaults → looks same → frustration
 
 Now you have a clear map of what the machine expects. You can craft “grown-up” network scenarios that will visually and numerically change the topology and metrics.
 
-If you want, I can generate 50 more prompts, or tailor them specifically for interview demo.
